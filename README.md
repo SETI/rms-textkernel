@@ -65,6 +65,8 @@ import textkernel
 tkdict = textkernel.from_file('path/to/kernel/file')
 ```
 
+(The file path can be any URL accepted by [`FCPath`](https://rms-filecache.readthedocs.io/en/latest/module.html#filecache.file_cache_path.FCPath).)
+
 The returned dictionary `tkdict` is keyed by all the parameter names (on the left side of
 an equal sign) in the text kernel, and each associated dictionary value is that found on
 the right side. Values are Python ints, floats, strings, datetime objects, or lists of
