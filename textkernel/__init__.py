@@ -23,8 +23,9 @@ and two functions for manipulating text kernels:
 
 __all__ = ['from_text', 'from_file', 'continued_value', 'update_dict']
 
-import pathlib
 import re
+
+import filecache
 
 from textkernel._DATA_GRAMMAR          import _DATA_GRAMMAR
 from textkernel._NAME_GRAMMAR          import _NAME_GRAMMAR
@@ -306,7 +307,8 @@ def from_file(path, tkdict=None, *, contin=''):
     Parse the contents of a text kernel, returning a dict of the values found.
 
     Args:
-        path (str or Path): The path to a kernel file as a string or `pathlib.Path`.
+        path (str or Path or FCPath): The path to a kernel file as a string,
+            `pathlib.Path`, or `filecache.FCPath`.
         tkdict (dict, optional): An optional starting dictionary. If provided, the new
             content is merged into the one provided; otherwise, a new dictionary is
             returned.
@@ -372,7 +374,7 @@ def from_file(path, tkdict=None, *, contin=''):
           ID.
     """
 
-    text = pathlib.Path(path).read_text(encoding='latin8')
+    text = filecache.FCPath(path).read_text(encoding='latin1')
     return from_text(text, tkdict=tkdict, commented=True, contin=contin)
 
 
