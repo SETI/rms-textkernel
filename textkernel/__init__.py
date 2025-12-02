@@ -374,7 +374,7 @@ def from_file(path, tkdict=None, *, contin=''):
           ID.
     """
 
-    text = filecache.FCPath(path).read_text(encoding='latin8')
+    text = filecache.FCPath(path).read_text(encoding='latin1')
     return from_text(text, tkdict=tkdict, commented=True, contin=contin)
 
 
