@@ -2,7 +2,7 @@ coverage
 flake8
 myst-parser
 numpy
-pyparsing
+pyparsing>=3.0.0
 pytest
 rms-filecache
 rms-julian

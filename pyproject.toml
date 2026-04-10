@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
     "numpy",
-    "pyparsing",
+    "pyparsing>=3.0.0",
     "rms-filecache",
     "rms-julian"
 ]
