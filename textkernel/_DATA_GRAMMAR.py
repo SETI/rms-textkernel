@@ -9,7 +9,7 @@ from pyparsing import (CharsNotIn,
                        Combine,
                        Literal,
                        nums,
-                       oneOf,
+                       one_of,
                        OneOrMore,
                        Optional,
                        ParseException,
@@ -44,7 +44,7 @@ OPT_COMMA = OPT_WHITE + Suppress(Optional(Literal(','))) + OPT_WHITE
 # Integer
 ############################################
 
-SIGN         = oneOf('+ -')
+SIGN         = one_of('+ -')
 UNSIGNED_INT = Word(nums)
 SIGNED_INT   = Combine(Optional(SIGN) + UNSIGNED_INT)
 INT          = SIGNED_INT | UNSIGNED_INT
@@ -57,7 +57,7 @@ INTEGER.set_parse_action(lambda s, loc, toks: int(toks[0]))
 # Floating-point number
 ############################################
 
-EXPONENT = Suppress(oneOf('e E d D')) + INT
+EXPONENT = Suppress(one_of('e E d D')) + INT
 EXPONENT.set_parse_action(lambda s, loc, toks: 'e' + toks[0])
 
 FLOAT_WITH_INT = Combine(INT + '.' + Optional(UNSIGNED_INT) + Optional(EXPONENT))
@@ -140,7 +140,7 @@ NAME_ = Combine(CharsNotIn(EXCLUDED_CHARS))
 # Expressions
 ############################################
 
-STATEMENT = NAME_ + oneOf('= +=') + OPT_NEWLINE + VALUE + NEWLINE
+STATEMENT = NAME_ + one_of('= +=') + OPT_NEWLINE + VALUE + NEWLINE
 STATEMENT.set_name('STATEMENT')
 STATEMENT.set_parse_action(lambda s, loc, toks: tuple(toks))
 

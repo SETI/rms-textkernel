@@ -7,7 +7,7 @@ from pyparsing import (alphanums,
                        Combine,
                        Literal,
                        nums,
-                       oneOf,
+                       one_of,
                        OneOrMore,
                        Optional,
                        ParserElement,
@@ -41,7 +41,7 @@ ParserElement.set_default_whitespace_chars('')
 GENERAL_NAME = Combine(CharsNotIn(EXCLUDED_CHARS))
 GENERAL_NAME.set_name('GENERAL_NAME')
 
-INDEXED_NAME = (oneOf(['BODY', 'OBJECT', 'FRAME', 'TKFRAME', 'INS', 'CK'])
+INDEXED_NAME = (one_of(['BODY', 'OBJECT', 'FRAME', 'TKFRAME', 'INS', 'CK'])
                 + Suppress(Optional(Literal('_')))
                 + INTEGER
                 + Suppress(Optional(Literal('_')))
@@ -49,7 +49,7 @@ INDEXED_NAME = (oneOf(['BODY', 'OBJECT', 'FRAME', 'TKFRAME', 'INS', 'CK'])
 INDEXED_NAME.set_name('INDEXED_NAME')
 INDEXED_NAME.set_parse_action(lambda s, loc, toks: tuple(toks))
 
-TKFRAME_SUFFIX = oneOf(['ANGLES', 'AXES', 'BORESIGHT', 'MATRIX', 'Q', 'RELATIVE', 'SPEC',
+TKFRAME_SUFFIX = one_of(['ANGLES', 'AXES', 'BORESIGHT', 'MATRIX', 'Q', 'RELATIVE', 'SPEC',
                         'UNITS'])
 _TKFRAME_SUFFIX = Suppress(Literal('_')) + TKFRAME_SUFFIX
 TKFRAME_NAME = (Literal('TKFRAME')
